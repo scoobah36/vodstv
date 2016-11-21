@@ -12,7 +12,7 @@ var src = {
     scss: 'app/scss/*.scss',
     html: 'app/**/*.html',
     templ:'app/templates/**/*.html',
-    js:   'app/js/*.js'
+    js:   'app/js/**/*.js'
 };
 var dist = {
     root: 'dist',
@@ -33,7 +33,8 @@ gulp.task('js-watch', ['js'], function (done) {
 gulp.task('serve', ['html','sass', 'js', 'lib'], function() {
 
     browserSync.init({
-        server: "./dist"
+        server: "./dist",
+        open: false
     });
 
     gulp.watch(src.scss, ['sass']);
@@ -67,11 +68,11 @@ gulp.task('lib', function() {
     gulp.src(gnf(null, './package.json'), {base:'./'})
     .pipe(gulp.dest(src.lib));
     var libs =[
-        src.lib +"/node_modules/jquery/dist/jquery.min.js",
-        src.lib +"/node_modules/knockout/build/output/knockout-latest.js",
-        src.lib +"/node_modules/knockout-mapping/dist/knockout.mapping.min.js",
-        src.lib +"/node_modules/moment/min/moment.min.js",
-        src.lib +"/node_modules/bootstrap/dist/js/bootstrap.min.js"
+        src.lib + "/node_modules/jquery/dist/jquery.min.js",
+        src.lib + "/node_modules/knockout/build/output/knockout-latest.js",
+        src.lib + "/node_modules/knockout-mapping/dist/knockout.mapping.min.js",
+        src.lib + "/node_modules/moment/min/moment.min.js",
+        src.lib + "/node_modules/bootstrap/dist/js/bootstrap.min.js"
     ];
     gulp.src(libs)
     .pipe(gulp.dest(dist.lib));
