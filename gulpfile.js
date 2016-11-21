@@ -9,7 +9,7 @@ var reload      = browserSync.reload;
 var src = {
     root: 'app',
     lib:  'app/lib',
-    scss: 'app/scss/*.scss',
+    scss: 'app/scss/**/*.scss',
     html: 'app/**/*.html',
     templ:'app/templates/**/*.html',
     js:   'app/js/**/*.js'
