@@ -82,7 +82,8 @@ gulp.task('lib', function() {
 gulp.task('sass', function() {
     return gulp.src(src.scss)
         .pipe(sass())
-        .pipe(gulp.dest(dist.css))
+        .pipe(concat('vodstv.css'))
+        .pipe(gulp.dest(dist.root))
         .pipe(reload({stream: true}));
 });
 
