@@ -10,7 +10,6 @@ var src = {
     root: 'app',
     lib:  'app/lib',
     scss: 'app/scss/**/*.scss',
-    html: 'app/**/*.html',
     templ:'app/templates/**/*.html',
     js:   'app/js/**/*.js'
 };
@@ -38,7 +37,7 @@ gulp.task('serve', ['html','sass', 'js', 'lib'], function() {
     });
 
     gulp.watch(src.scss, ['sass']);
-    gulp.watch(src.html).on('change', reload);
+    gulp.watch(src.templ).on('change', reload);
     gulp.watch(src.js, ['js-watch']);
 });
 

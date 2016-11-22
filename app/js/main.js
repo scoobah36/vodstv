@@ -26,3 +26,10 @@ ko.components.register('app-main', {
     }
 });
 
+Object.defineProperty(window, 'v', {
+    value:{
+        context:"/vod",
+        service:{}
+    }
+})
+
