@@ -22,7 +22,8 @@ ko.components.loaders.unshift(templateFromUrlLoader);
 ko.components.register('app-main', {
     template: { fromUrl: 'main.html'},
     viewModel: function(){
-        this.title = "Vods TV"
+        this.title = "Admin Page";
+        this.controller = "admin";
     }
 });
 

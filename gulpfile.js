@@ -10,13 +10,14 @@ var src = {
     root: 'app',
     lib:  'app/lib',
     scss: 'app/scss/**/*.scss',
+    assets: 'app/assets',
     templ:'app/templates/**/*.html',
     js:   'app/js/**/*.js'
 };
 var dist = {
     root: 'dist',
     lib:  'dist/lib',
-    css:  'dist/css',
+    assets: 'dist/assets',
     templ:'dist/templates',
     js:   'dist/js/*.js'
 }
@@ -29,7 +30,7 @@ gulp.task('js-watch', ['js'], function (done) {
 });
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['html','sass', 'js', 'lib'], function() {
+gulp.task('serve', ['html','sass', 'js', 'lib', 'assets'], function() {
 
     browserSync.init({
         server: "./dist",
@@ -71,11 +72,28 @@ gulp.task('lib', function() {
         src.lib + "/node_modules/knockout/build/output/knockout-latest.js",
         src.lib + "/node_modules/knockout-mapping/dist/knockout.mapping.min.js",
         src.lib + "/node_modules/moment/min/moment.min.js",
-        src.lib + "/node_modules/bootstrap/dist/js/bootstrap.min.js"
+        src.lib + "/node_modules/bootstrap/dist/js/bootstrap.min.js",
+        src.lib + "/vendor/pace/pace.min.js",
+        src.lib + "/vendor/slimScroll/jquery.slimscroll.min.js",
+        src.lib + "/vendor/fastclick/fastclick.js",
+        src.lib + "/vendor/adminLTE/app.min.js"
     ];
     gulp.src(libs)
     .pipe(gulp.dest(dist.lib));
 
+});
+
+gulp.task('assets', function() {
+
+    //get vendor css
+    var css =[
+        src.lib + "/vendor/pace/pace.min.css"
+    ];
+    gulp.src(css)
+    .pipe(gulp.dest(dist.assets + "/css"));
+    
+    return gulp.src(src.assets + "/**/*.*")
+        .pipe(gulp.dest(dist.assets));
 });
 
 // Compile sass into CSS
