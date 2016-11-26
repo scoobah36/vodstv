@@ -1,0 +1,42 @@
+ <!-- Default box -->
+<div class="box watcher-list">
+    <div class="box-header with-border">
+        <h3 class="box-title"data-bind="text: title"></h3>
+
+        <div class="box-tools">
+        </div>
+    </div>
+
+    <div class="box-body table-responsive">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: data -->
+                <tr>
+                    <td data-bind="text:id"></td>
+                    <td data-bind="text:firstName"></td>
+                    <td data-bind="text:lastName"></td>
+                    <td data-bind="text:email"></td>
+                    <td></td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
