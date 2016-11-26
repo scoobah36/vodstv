@@ -9,9 +9,20 @@ ko.components.register('admin', {
         });
     }},
     viewModel: function(){
-        this.title = "Watchers";
-        this.page = "watcher-list";
+        var vm = {}
+        var components = {
+            watchers: "watcher-list",
+            dashboard: "admin-dashboard"
+        }
 
-
+        vm.title = "Watchers";
+        vm.content = ko.pureComputed(function(){
+            var page = "watcher-list"
+            if(v.page.params() && v.page.params().content){
+                page = components[v.page.params().content] || v.page.params().content
+            }
+            return page;
+        });
+        return vm;
     }
 });

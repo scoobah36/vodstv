@@ -26,22 +26,26 @@ ko.components.loaders.unshift(templateFromUrlLoader);
 Object.defineProperty(window, 'v', {
     value:{
         context:"/vod",
-        page: ko.observable("match-bank"),
+        page: {
+            comp: ko.observable(),
+            params:ko.observable()
+        },
         service:{}
     }
 })
 
 page.base("/#");
-page('/', function(){
+page('/', function(ctx){
     console.log('feed', arguments);
     // v.page("feed");
 })
-page('/matchBank', function() {
-    v.page("match-bank");
+page('/matchBank', function(ctx) {
+    v.page.comp("match-bank");
 })
-page('/admin/:content', function (content) {
-    console.log('admin', arguments);
-    v.page("admin");
+page('/admin/:content', function (ctx) {
+    console.log('content', arguments);
+    v.page.comp("admin");
+    v.page.params(ctx.params);
 })
 page('*', function(){
     page.redirect("/")
@@ -51,6 +55,6 @@ page()
 ko.components.register('app-main', {
     template: { fromUrl: 'main.html'},
     viewModel: function(){
-        this.controller = v.page;
+        this.controller = v.page.comp;
     }
 });
