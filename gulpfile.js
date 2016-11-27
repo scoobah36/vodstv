@@ -1,16 +1,17 @@
 var gulp        = require('gulp');
+// Include plugins
+var plugins = require("gulp-load-plugins")({
+	pattern: ['gulp-*', 'gulp.*', 'browserify'],
+	replaceString: /\bgulp[\-.]/
+});
 var browserSync = require('browser-sync').create();
-var browserify  = require('browserify');
-var concat      = require('gulp-concat');
-var sass        = require('gulp-sass');
-var gnf         = require('gulp-npm-files');
 var reload      = browserSync.reload;
 
 var src = {
     root: 'app',
     lib:  'app/lib',
-    node:  'app/lib/node_modules',
-    vend:  'app/lib/vendor',
+    bower:  'bower_components',
+    vend:  'app/vendor',
     scss: 'app/scss/**/*.scss',
     assets: 'app/assets',
     templ:'app/templates/**/*.html',
@@ -61,34 +62,31 @@ gulp.task('html', function () {
 // process JS files and return the stream.
 gulp.task('js', function () {
     return gulp.src(src.js)
-        .pipe(concat('vodstv.js'))
+        .pipe(plugins.concat('vodstv.js'))
+        // .pipe(plugins.browserify())
         .pipe(gulp.dest(dist.root));
-        // .pipe(browserify())
 });
 
-// get lib JS files fron npm
-// Copy dependencies to build/node_modules/ by 
-// value in './path/to/package.json' file 
+// get lib JS files fron bower and vendor dir to make a lib.js
 gulp.task('lib', function() {
-    gulp.src(gnf(null, './package.json'), {base:'./'})
-    .pipe(gulp.dest(src.lib));
-    var libs =[
-        src.node + "/jquery/dist/jquery.min.js",
-        src.node + "/knockout/build/output/knockout-latest.js",
-        src.node + "/knockout-mapping/dist/knockout.mapping.min.js",
-        src.node + "/moment/min/moment.min.js",
-        src.node + "/bootstrap/dist/js/bootstrap.min.js",
-        src.node + "/page/page.js",
-        src.node + "/underscore/underscore-min.js",
-        src.node + "/underscore.string/dist/underscore.string.min.js",
+    var libs = [
+        src.bower + "/jquery/dist/jquery.min.js",
+        src.bower + "/knockout/dist/knockout.js",
+        src.bower + "/knockout-mapping/build/output/knockout.mapping-latest.js",
+        src.bower + "/moment/min/moment.min.js",
+        src.bower + "/bootstrap/dist/js/bootstrap.min.js",
+        src.bower + "/page/page.js",
+        src.bower + "/underscore/underscore-min.js",
+        src.bower + "/underscore.string/dist/underscore.string.min.js",
         src.vend + "/pace/pace.min.js",
         src.vend + "/slimScroll/jquery.slimscroll.min.js",
         src.vend + "/fastclick/fastclick.js",
         src.vend + "/adminLTE/app.min.js"
     ];
-    gulp.src(libs)
-    .pipe(gulp.dest(dist.lib));
 
+	gulp.src(libs)
+		.pipe(plugins.concat('libs.js'))
+		.pipe(gulp.dest(dist.root));
     return gulp.src(src.vend + "/datatables/**/*.*")
         .pipe(gulp.dest(dist.lib + "/datatables"));
 
@@ -98,7 +96,7 @@ gulp.task('assets', function() {
 
     //get vendor css
     var css =[
-        src.lib + "/vendor/pace/pace.min.css"
+        src.vend + "/pace/pace.min.css"
     ];
     gulp.src(css)
     .pipe(gulp.dest(dist.assets + "/css"));
@@ -110,8 +108,8 @@ gulp.task('assets', function() {
 // Compile sass into CSS
 gulp.task('sass', function() {
     return gulp.src(src.scss)
-        .pipe(sass())
-        .pipe(concat('vodstv.css'))
+        .pipe(plugins.sass())
+        .pipe(plugins.concat('vodstv.css'))
         .pipe(gulp.dest(dist.root))
         .pipe(reload({stream: true}));
 });

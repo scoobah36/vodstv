@@ -146,7 +146,7 @@ ko.components.register('app-main', {
         _.extend(window.v, {
             context:"/vod",
             api: "http://localhost:9000/v1",
-            curentUser: v.model.watcher.create(),
+            currentUser: v.model.watcher.create(),
             page: {
                 comp: ko.observable("match-bank"),
                 params: ko.observable()
@@ -162,7 +162,7 @@ ko.components.register('app-main', {
             },
             dataType: "json",
             success: function(data){
-                v.curentUser.load(data);
+                v.currentUser.load(data);
             },
             failure: function(errMsg) {
                 alert(errMsg);
@@ -186,11 +186,11 @@ ko.components.register('app-main', {
             v.page.comp("admin");
         });
         page('/auth/logout', function(){
-            $.ajax({
+            $.ajax({    
                 type: "GET",
                 url: v.api + '/watcher/signout',
                 success: function(data){
-                    v.username(null);
+                    v.currentUser.reset();
                     page("/");
                 },
                 failure: function(errMsg) {
