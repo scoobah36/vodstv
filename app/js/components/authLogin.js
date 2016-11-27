@@ -9,9 +9,13 @@ ko.components.register('auth-login', {
                 type: "POST",
                 url: v.api + '/watcher/login',
                 data: JSON.stringify({ email: vm.email, password: vm.pass }),
+                xhrFields: {
+                    withCredentials: true
+                },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function(data){
+                    v.currentUser.load(data);
                     page("/");
                 },
                 failure: function(errMsg) {

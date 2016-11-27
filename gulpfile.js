@@ -79,6 +79,8 @@ gulp.task('lib', function() {
         src.node + "/moment/min/moment.min.js",
         src.node + "/bootstrap/dist/js/bootstrap.min.js",
         src.node + "/page/page.js",
+        src.node + "/underscore/underscore-min.js",
+        src.node + "/underscore.string/dist/underscore.string.min.js",
         src.vend + "/pace/pace.min.js",
         src.vend + "/slimScroll/jquery.slimscroll.min.js",
         src.vend + "/fastclick/fastclick.js",

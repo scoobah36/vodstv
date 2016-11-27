@@ -23,6 +23,8 @@
     "knockout": "3.4.1",
     "knockout-mapping": "^2.6.0",
     "moment": "2.16.0",
-    "page": "^1.7.1"
+    "page": "^1.7.1",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.3.4"
   }
 }
