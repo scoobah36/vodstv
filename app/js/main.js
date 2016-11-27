@@ -153,21 +153,12 @@ ko.components.register('app-main', {
             },
         });
 
-        $.ajax({
-            type: "GET",
+        v.Ajax.doGet({
             url: v.api + '/me',
-            contentType: "application/json; charset=utf-8",
-            xhrFields: {
-                withCredentials: true
-            },
-            dataType: "json",
-            success: function(data){
+            onSuccess: function(data){
                 v.currentUser.load(data);
             },
-            failure: function(errMsg) {
-                alert(errMsg);
-            }
-        });
+        })
 
         page.base("/#");
         page('/', function(ctx){
@@ -186,17 +177,13 @@ ko.components.register('app-main', {
             v.page.comp("admin");
         });
         page('/auth/logout', function(){
-            $.ajax({    
-                type: "GET",
+            v.Ajax.doGet({
                 url: v.api + '/watcher/signout',
-                success: function(data){
+                onSuccess: function(data){
                     v.currentUser.reset();
                     page("/");
                 },
-                failure: function(errMsg) {
-                    alert(errMsg);
-                }
-            });
+            })
         });
         page('/auth/:content', function (ctx) {
             console.log('auth', arguments);
