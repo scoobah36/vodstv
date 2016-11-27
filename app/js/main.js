@@ -26,9 +26,10 @@ ko.components.loaders.unshift(templateFromUrlLoader);
 Object.defineProperty(window, 'v', {
     value:{
         context:"/vod",
+        api: "http://localhost:9000/v1",
         page: {
-            comp: ko.observable(),
-            params:ko.observable()
+            comp: ko.observable("match-bank"),
+            params: ko.observable()
         },
         service:{}
     }
@@ -37,20 +38,25 @@ Object.defineProperty(window, 'v', {
 page.base("/#");
 page('/', function(ctx){
     console.log('feed', arguments);
-    // v.page("feed");
-})
-page('/matchBank', function(ctx) {
-    v.page.comp("match-bank");
-})
-page('/admin/:content', function (ctx) {
-    console.log('content', arguments);
-    v.page.comp("admin");
     v.page.params(ctx.params);
-})
-page('*', function(){
-    page.redirect("/")
-})
-page()
+    // v.page("feed");
+    v.page.comp("admin");
+});
+page('/matchBank', function(ctx) {
+    v.page.params(ctx.params);
+    v.page.comp("match-bank");
+});
+page('/admin/:content', function (ctx) {
+    console.log('admin', arguments);
+    v.page.params(ctx.params);
+    v.page.comp("admin");
+});
+page('/auth/:content', function (ctx) {
+    console.log('auth', arguments);
+    v.page.params(ctx.params);
+    v.page.comp("auth");
+});
+page();
 
 ko.components.register('app-main', {
     template: { fromUrl: 'main.html'},
