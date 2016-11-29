@@ -7,10 +7,10 @@ ko.components.register('admin', {
         var vm = {}
         var components = {
             watchers: "watcher-list",
+            tags: "tag-list",
             dashboard: "admin-dashboard"
         }
 
-        vm.title = "Watchers";
         vm.content = ko.pureComputed(function(){
             var page = "watcher-list"
             if(v.page.params() && v.page.params().content){

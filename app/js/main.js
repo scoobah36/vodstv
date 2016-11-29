@@ -162,7 +162,6 @@ ko.components.register('app-main', {
 
         page.base("/#");
         page('/', function(ctx){
-            console.log('feed', arguments);
             v.page.params(ctx.params);
             // v.page("feed");
             v.page.comp("admin");
@@ -172,7 +171,6 @@ ko.components.register('app-main', {
             v.page.comp("match-bank");
         });
         page('/admin/:content', function (ctx) {
-            console.log('admin', arguments);
             v.page.params(ctx.params);
             v.page.comp("admin");
         });
@@ -186,7 +184,6 @@ ko.components.register('app-main', {
             })
         });
         page('/auth/:content', function (ctx) {
-            console.log('auth', arguments);
             v.page.params(ctx.params);
             v.page.comp("auth");
         });

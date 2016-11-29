@@ -34,6 +34,7 @@ Object.defineProperty(v, "Ajax", {
                 url: options.url,
                 type: options.type,
                 cache: options.cache,
+                xhrFields: options.xhrFields,
                 async: options.async,
                 contentType: options.contentType,
                 dataType: options.dataType,
@@ -83,6 +84,14 @@ Object.defineProperty(v, "Ajax", {
         doGet : function(options){
             var self = this;
             var ajaxOptions = self.getDefaultAjaxOptions();
+            _.extend(ajaxOptions, options);
+            return self._sendAjax(self._buildAjax(ajaxOptions));
+        },
+
+        doDelete : function(options){
+            var self = this;
+            var ajaxOptions = self.getDefaultAjaxOptions();
+            options.type = 'DELETE';
             _.extend(ajaxOptions, options);
             return self._sendAjax(self._buildAjax(ajaxOptions));
         },
