@@ -1,0 +1,58 @@
+ 
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title"data-bind="text: title"></h3>
+
+        <div class="box-tools">
+            <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            <div class="input-group-btn pull-right">
+                <button data-bind="click: add" class="btn btn-default pull-right"><i class="fa fa-plus"></i></button>
+            </div>
+            
+        </div>
+    </div>
+    <div class="box-body">
+        <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Info</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>VideoKey</th>
+            <th>VideoURL</th>
+            <th>VideoSrc</th>
+            <th>VideoDate</th>
+            <th>ThumbURL</th>
+            <th>actions</th>
+        </tr>
+        <!-- ko foreach: data -->
+        <tr>
+            <td data-bind="text: id"></td>
+            <td>
+                <div data-bind="text: createdAt"></div>
+                <div data-bind="text: updatedAt"></div>
+                <div data-bind="text: deletedAt"></div>
+            </td>
+            <td><input data-bind="value: title" type="text" /></td>
+            <td><input data-bind="value: content" type="text" /></td>
+            <td><input data-bind="value: videoKey" type="text" /></td>
+            <td><input data-bind="value: videoURL" type="text" /></td>
+            <td><input data-bind="value: videoSrc" type="text" /></td>
+            <td><input data-bind="value: videoDate" type="text" /></td>
+            <td><input data-bind="value: thumbURL" type="text" /></td>
+            <td>
+                <div data-bind="click: save" class="label label-success pointer"><span class="fa fa-save"></span></div>
+                <div data-bind="click: del" class="label label-danger pointer"><span class="fa fa-trash"></span></div>
+            </td>
+        </tr>
+        <!-- /ko -->
+        </table>
+    </div>
+</div>

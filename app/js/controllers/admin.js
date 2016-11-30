@@ -8,6 +8,7 @@ ko.components.register('admin', {
         var components = {
             watchers: "watcher-list",
             tags: "tag-list",
+            vods: "vod-list",
             dashboard: "admin-dashboard"
         }
 
