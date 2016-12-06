@@ -1,8 +1,8 @@
-Object.defineProperty(v.service, 'tag', {
+Object.defineProperty(v.service, 'feed', {
     value:{
         list: function(query){
             return v.Ajax.doPost({
-                url: v.api + '/tags'
+                url: v.api + '/feeds'
             });
         },
         save: function(tag){
@@ -13,7 +13,7 @@ Object.defineProperty(v.service, 'tag', {
             }
 
             return v.Ajax.doPost({
-                url: v.api + '/tag',
+                url: v.api + '/feed',
                 data: toSave
             });
         },
@@ -25,7 +25,7 @@ Object.defineProperty(v.service, 'tag', {
             }
 
             return v.Ajax.doDelete({
-                url: v.api + '/tag/' + id 
+                url: v.api + '/feed/' + id 
             });
         }
     }

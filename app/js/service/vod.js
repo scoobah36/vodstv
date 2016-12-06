@@ -10,9 +10,6 @@ Object.defineProperty(v.service, 'vod', {
 
             if(vod._isVModel){
                 toSave = vod.toJS();
-                delete toSave.createdAt;
-                delete toSave.updatedAt;
-                delete toSave.deletedAt;
             }
 
             return v.Ajax.doPost({
