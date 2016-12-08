@@ -6,7 +6,7 @@ ko.components.register('auth-login', {
         vm.pass = "";
         vm.login = function(){
             v.Ajax.doPost({
-                url: v.api + '/watcher/login',
+                url: v.api + '/login',
                 data: { email: vm.email, password: vm.pass },
                 onSuccess: function(data){
                     v.currentUser.load(data);

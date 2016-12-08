@@ -8,35 +8,24 @@
     </div>
 
     <div class="box-body table-responsive">
-        <table id="example1" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- ko foreach: data -->
-                <tr>
-                    <td data-bind="text:id"></td>
-                    <td data-bind="text:firstName"></td>
-                    <td data-bind="text:lastName"></td>
-                    <td data-bind="text:email"></td>
-                    <td></td>
-                </tr>
-                <!-- /ko -->
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Email</th>
-                    <th></th>
-                </tr>
-            </tfoot>
+        <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>actions</th>
+        </tr>
+        <!-- ko foreach: data -->
+        <tr>
+            <td data-bind="text: id"></td>
+            <td><input data-bind="value: name" type="text" /></td>
+            <td><input data-bind="value: email" type="text" /></td>
+            <td>
+                <div data-bind="click: save" class="label label-success pointer"><span class="fa fa-save"></span></div>
+                <div data-bind="click: del" class="label label-danger pointer"><span class="fa fa-trash"></span></div>
+            </td>
+        </tr>
+        <!-- /ko -->
         </table>
     </div>
 </div>

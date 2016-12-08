@@ -1,6 +1,6 @@
 
 Object.defineProperty(v.model, "vod", v._propDefinition(function() {
-    var self = v.model.Base.extend({
+    var self = v.model.domain.extend({
         _type:"vod",
         id: ko.observable(),
         createdAt: ko.observable(),
@@ -12,18 +12,7 @@ Object.defineProperty(v.model, "vod", v._propDefinition(function() {
         videoURL: ko.observable(),
         videoSrc: ko.observable(),
         videoDate: ko.observable(),
-        thumbURL: ko.observable(),
-
-        save: function(){
-            v.service.vod.save(self).then(function(res){
-                self.vod(res)
-            });
-        },
-        del: function(){
-            v.service.vod.delete(self).then(function(res){
-                self.load(res)
-            });
-        }
+        thumbURL: ko.observable()
         
     });
     return self;

@@ -2,7 +2,7 @@
 ko.components.register('watcher-list', {
     template: { fromUrl: 'components/watcherList.html', postRender:function(){
         
-        $('#example1').DataTable({
+        $('#watchers').DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
@@ -11,7 +11,21 @@ ko.components.register('watcher-list', {
         });
     }},
     viewModel: function(params){
-        this.title = "Watchers";
-        this.data = v.service.admin.getWatchers();
+        var vm = {};
+        vm.title = "Watchers";
+        vm.data = ko.observableArray([]);
+        v.service.watcher.list().then(function(watchers){
+            var data = [];
+            _.each(watchers, function(watcher){
+                data.push(v.model.watcher.create(watcher));
+            })
+            vm.data(data);
+        });
+
+        vm.add = function(){
+            vm.data.push(v.model.watcher.create());
+        }
+
+        return vm;
     }
 });

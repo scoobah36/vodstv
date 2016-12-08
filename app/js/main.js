@@ -176,7 +176,7 @@ ko.components.register('app-main', {
         });
         page('/auth/logout', function(){
             v.Ajax.doGet({
-                url: v.api + '/watcher/signout',
+                url: v.api + '/signout',
                 onSuccess: function(data){
                     v.currentUser.reset();
                     page("/");
