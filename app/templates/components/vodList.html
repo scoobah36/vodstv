@@ -19,6 +19,10 @@
         </div>
     </div>
     <div class="box-body">
+        <div data-bind="foreach: tags">
+            <input type="checkbox" data-bind="checkedValue: id, checked: $parent.selTags"/> <span data-bind="text: name"></span>
+        </div>
+
         <table class="table table-striped">
         <tr>
             <th>ID</th>
