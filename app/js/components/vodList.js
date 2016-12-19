@@ -14,7 +14,7 @@ ko.components.register('vod-list', {
         var vm = {};
         vm.title = "Vods"
         vm.data = ko.observableArray([]);
-        v.service.vod.list().then(function(vods){
+        v.service.vod.list({tagIds:[9,8]}).then(function(vods){
             var data = [];
             _.each(vods, function(vod){
                 data.push(v.model.vod.create(vod));

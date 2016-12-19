@@ -2,9 +2,15 @@ Object.defineProperty(v.service, 'domain', v._propDefinition(function() {
     var self = v.Object.extend({
         model:"domain",
         list: function(query){
-            return v.Ajax.doPost({
+            var request = {
                 url: v.api + '/' + self.model + 's'
-            });
+            };
+
+            if(query){
+                request.data = query;
+            }
+            
+            return v.Ajax.doPost(request);
         },
         save: function(model){
             var toSave = model;
