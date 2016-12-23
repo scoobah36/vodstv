@@ -1,12 +1,14 @@
 ko.components.register('match-card', {
     template: { fromUrl: 'components/matchCard.html'},
     viewModel: function(params){
-        this.title = "test";
-        this.tags = [];
-
+        var vm = {};
+        vm.title = "test";
+        vm.tags = [];
+        
+        vm.match = v.model.match.create()
         if(params.match){
-            this.title = params.match.title;
-            this.tags = params.match.tags;
+            vm.match.load(params.match)
         }
+        return vm;
     }
 });

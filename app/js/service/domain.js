@@ -1,9 +1,23 @@
 Object.defineProperty(v.service, 'domain', v._propDefinition(function() {
     var self = v.Object.extend({
         model:"domain",
+
+        getUrl: function(type){
+            var url = "/"
+            var urls = {
+                list: self.urls.list ? self.urls.list :  v.api + '/' + self.model + 's',
+                save: self.urls.save ? self.urls.save :  v.api + '/' + self.model,
+                delete: self.urls.delete ? self.urls.delete :  v.api + '/' + self.model 
+            }
+            if(urls[type]){
+                url = urls[type];
+            }
+            return url;
+        },
+
         list: function(query){
             var request = {
-                url: v.api + '/' + self.model + 's'
+                url: self.getUrl("list")
             };
 
             if(query){
@@ -20,7 +34,7 @@ Object.defineProperty(v.service, 'domain', v._propDefinition(function() {
             }
 
             return v.Ajax.doPost({
-                url: v.api + '/' + self.model,
+                url: self.getUrl("save"),
                 data: toSave
             });
         },
@@ -32,7 +46,7 @@ Object.defineProperty(v.service, 'domain', v._propDefinition(function() {
             }
 
             return v.Ajax.doDelete({
-                url: v.api + '/' + self.model + '/' + id 
+                url: self.getUrl("delete") + '/' + id 
             });
         }
     });

@@ -1,6 +1,6 @@
 <div class="match-card">
-    <h1 data-bind="text: title"></h1>
-    <div data-bind="foreach:tags">
+    <h1 data-bind="text: match.title"></h1> <span data-bind="text: match.id"></span>
+    <div data-bind="foreach:match.tags">
         <span data-bind="text:$data"></span>, 
     </div>
 </div>

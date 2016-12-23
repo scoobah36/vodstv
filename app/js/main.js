@@ -166,6 +166,10 @@ ko.components.register('app-main', {
             // v.page("feed");
             v.page.comp("admin");
         });
+        page('/feed', function(ctx) {
+            v.page.params(ctx.params);
+            v.page.comp("feed");
+        });
         page('/matchBank', function(ctx) {
             v.page.params(ctx.params);
             v.page.comp("match-bank");
