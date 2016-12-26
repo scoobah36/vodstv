@@ -145,11 +145,13 @@ ko.components.register('app-main', {
         //variables
         _.extend(window.v, {
             context:"/vod",
+            // api: "https://esvods-dev.herokuapp.com/v1",
             api: "http://localhost:9000/v1",
             currentUser: v.model.watcher.create(),
             page: {
                 comp: ko.observable("match-bank"),
-                params: ko.observable()
+                params: ko.observable(),
+                ctx: ko.observable()
             },
         });
 
@@ -160,25 +162,24 @@ ko.components.register('app-main', {
             },
         })
 
+        var pageControllers = {
+            '/': "feed",
+            '/feed': "feed",
+            '/matchBank': "feed",
+            '/admin/:content': "feed",
+            '/auth/logout': "feed"
+        };
+
         page.base("/#");
-        page('/', function(ctx){
-            v.page.params(ctx.params);
-            // v.page("feed");
-            v.page.comp("admin");
+        //register pages
+        v.Alfred.keys(pageControllers).forEach(function(url){
+            page(url, function (ctx) {
+                v.page.ctx(ctx);
+                v.page.params(ctx.params);
+                v.page.comp("admin");
+            });
         });
-        page('/feed', function(ctx) {
-            v.page.params(ctx.params);
-            v.page.comp("feed");
-        });
-        page('/matchBank', function(ctx) {
-            v.page.params(ctx.params);
-            v.page.comp("match-bank");
-        });
-        page('/admin/:content', function (ctx) {
-            v.page.params(ctx.params);
-            v.page.comp("admin");
-        });
-        page('/auth/logout', function(){
+        page('/auth/logout', function(asdf) {
             v.Ajax.doGet({
                 url: v.api + '/signout',
                 onSuccess: function(data){
@@ -188,7 +189,7 @@ ko.components.register('app-main', {
             })
         });
         page('/auth/:content', function (ctx) {
-            v.page.params(ctx.params);
+            v.page.ctx(ctx);
             v.page.comp("auth");
         });
         page();

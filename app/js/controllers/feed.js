@@ -8,6 +8,7 @@ ko.components.register('feed', {
         
         vm.selTags = ko.observableArray();
         vm.tags = ko.observableArray([]);
+        vm.sugTags = ko.observableArray([]);
         v.service.tag.list().then(function(tags){
             var data = [];
             _.each(tags, function(tag){
@@ -22,6 +23,9 @@ ko.components.register('feed', {
         query.subscribe(function(q){
             v.service.vod.list(q).then(function(matches){
                 vm.matches(matches);
+            });
+            v.service.tag.getSuggested(q.tagIds).then(function(tags){
+                vm.sugTags(tags);
             });
         });
 
