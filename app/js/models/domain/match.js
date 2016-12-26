@@ -6,7 +6,6 @@ Object.defineProperty(v.model, "match", v._propDefinition(function() {
         title: ko.observable(),
         
         vods: ko.observableArray()
-        
     });
     return self;
 }));

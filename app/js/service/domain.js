@@ -1,6 +1,7 @@
 Object.defineProperty(v.service, 'domain', v._propDefinition(function() {
     var self = v.Object.extend({
         model:"domain",
+        urls:{},
 
         getUrl: function(type){
             var url = "/"

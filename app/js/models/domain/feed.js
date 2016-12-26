@@ -5,7 +5,7 @@ Object.defineProperty(v.model, "feed", v._propDefinition(function() {
         name: ko.observable(),
         type: ko.observable(),
 
-        tags: ko.observableArray([]),
+        tags: ko.observableArray([])
     });
     return self;
 }));

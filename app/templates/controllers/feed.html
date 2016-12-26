@@ -1,6 +1,24 @@
-<div class="match-bank">
-    <h1 data-bind="text: name"></h1> <span data-bind="text: matches().length"></span>
-    <div data-bind="foreach: matches">
-        <match-card params="match:$data"></match-card>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title"data-bind="text: name"></h3> <span data-bind="text: matches().length"></span>
+
+        <div class="box-tools">
+            <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+            
+        </div>
     </div>
+    <div class="box-body">
+        <div data-bind="foreach: tags">
+            <input type="checkbox" data-bind="checkedValue: id, checked: $parent.selTags"/> <span data-bind="text: name"></span>
+        </div>
+        <div data-bind="foreach: matches">
+            <match-card params="match:$data"></match-card>
+        </div>
 </div>
