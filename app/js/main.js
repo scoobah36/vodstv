@@ -167,6 +167,7 @@ ko.components.register('app-main', {
             '/feed': "feed",
             '/matchBank': "match-bank",
             '/admin/:content': "admin",
+            '/auth': "auth",
             '/auth/:content': "auth"
         };
 

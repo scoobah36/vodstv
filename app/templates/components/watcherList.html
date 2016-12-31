@@ -11,14 +11,14 @@
         <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Username</th>
             <th>Email</th>
             <th>actions</th>
         </tr>
         <!-- ko foreach: data -->
         <tr>
             <td data-bind="text: id"></td>
-            <td><input data-bind="value: name" type="text" /></td>
+            <td><input data-bind="value: username" type="text" /></td>
             <td><input data-bind="value: email" type="text" /></td>
             <td>
                 <div data-bind="click: save" class="label label-success pointer"><span class="fa fa-save"></span></div>
