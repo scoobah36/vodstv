@@ -165,9 +165,9 @@ ko.components.register('app-main', {
         var pageControllers = {
             '/': "feed",
             '/feed': "feed",
-            '/matchBank': "feed",
-            '/admin/:content': "feed",
-            '/auth/logout': "feed"
+            '/matchBank': "match-bank",
+            '/admin/:content': "admin",
+            '/auth/:content': "auth"
         };
 
         page.base("/#");
@@ -176,7 +176,7 @@ ko.components.register('app-main', {
             page(url, function (ctx) {
                 v.page.ctx(ctx);
                 v.page.params(ctx.params);
-                v.page.comp("admin");
+                v.page.comp(pageControllers[url]);
             });
         });
         page('/auth/logout', function(asdf) {
@@ -187,10 +187,6 @@ ko.components.register('app-main', {
                     page("/");
                 },
             })
-        });
-        page('/auth/:content', function (ctx) {
-            v.page.ctx(ctx);
-            v.page.comp("auth");
         });
         page();
         vm.controller = v.page.comp;
