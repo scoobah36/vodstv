@@ -1,18 +1,17 @@
 <template>
-  <div id="app">
-    <link href="./assets/theme.css">
+  <div class="app-main" id="app">
     <img src="./assets/logo.png">
-    <hello></hello>
+    <admin></admin>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Admin from './controllers/Admin'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Admin
   }
 }
 </script>
