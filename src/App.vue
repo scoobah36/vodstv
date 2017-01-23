@@ -1,18 +1,13 @@
 <template>
-  <div class="app-main" id="app">
-    <img src="./assets/logo.png">
-    <admin></admin>
+  <div id="app">
+        <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Admin from './controllers/Admin'
 
 export default {
   name: 'app',
-  components: {
-    Admin
-  }
 }
 </script>
 
