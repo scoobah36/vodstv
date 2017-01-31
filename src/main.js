@@ -3,13 +3,18 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+import Element from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+Vue.use(Element)
 
 // import components
 import App from './App'
 import Hello from './components/Hello'
+import VodList from './components/VodList'
+import TagList from './components/TagList'
 import Admin from './controllers/Admin'
-
-Vue.use(VueRouter)
 
 // Create the router instance and pass the `routes` option
 const router = new VueRouter({
@@ -17,11 +22,23 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Hello },
-    { path: '/admin', component: Admin }
+    { 
+      path: '/admin', 
+      component: Admin,
+      children: [
+          {
+            path: 'vods',
+            component: VodList
+          },
+          {
+            path: 'tags',
+            component: TagList
+          }
+        ]
+   }
   ]
 })
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
