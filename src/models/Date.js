@@ -11,4 +11,4 @@ export default g("Date", function(){
         }
     }
     return self
-}, [Time])
+})

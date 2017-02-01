@@ -44,27 +44,35 @@
 </template>
 
 <script>
+import g from 'genesis-object'
 import ctrl from '../controllers/Controller'
-var vodCtrl = ctrl.create({
-    model:"vod"
-});
+import Vod from '../models/Vod'
+
 export default {
-  name: 'vod-list',
-  methods: {
+    name: 'vod-list',
+    methods: {
       handleClick() {
         console.log('click');
-        var self = this;
-        vodCtrl.list().then(function(response){
-            self.vods = response.data;
-        })
       }
     },
-  data () {
-    return {
-        query:'',
-        vods: []
+    data () {
+        return g("", function(){
+            var self = {
+                model:"vod",
+                query: '',
+                vods:[Vod]
+            }
+            return self
+        }, [ctrl]).create()
+    },
+    mounted() {
+        var self = this;
+        self.list().then(function(response){
+            response.data.forEach(function(vod){
+                self.vods.pushCreate(vod);
+            })
+        })
     }
-  }
 }
 
 </script>
@@ -73,12 +81,3 @@ export default {
 <style scoped lang="scss">
 
 </style>
-id
-description
-tags
-thumbURL
-title
-videoDate
-videoKey
-videoSrc
-videoURL

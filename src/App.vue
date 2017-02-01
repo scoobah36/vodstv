@@ -2,50 +2,29 @@
     <el-row class="panel">
         <el-col :span="24" class="panel-top">
             <el-col :span="20" style="font-size:26px;">
-                <img src="./assets/logo4.png" class="logo"> <span>AD<i style="color:#20a0ff">MIN</i></span>
+                <img src="./assets/logo4.png" class="logo"> <span>Vods<i style="color:#20a0ff">TV</i></span>
             </el-col>
             <el-col :span="4" class="rightbar">
                 <el-dropdown trigger="click">
-                    <span class="el-dropdown-link" style="color:#c0ccda;cursor: pointer;"><img :src="this.sysUserAvatar" class="head"> {{sysUserName}}</span>
+                    <span class="el-dropdown-link" style="color:#c0ccda;cursor: pointer;"><i class="fa fa-user" aria-hidden="true" style="margin-right:5px;"></i> {{user.username}}</span>
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>我的消息</el-dropdown-item>
-                        <el-dropdown-item>设置</el-dropdown-item>
-                        <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+                        <el-dropdown-item>this</el-dropdown-item>
+                        <el-dropdown-item>that</el-dropdown-item>
+                        <el-dropdown-item divided @click.native="logout">Logout</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <el-tooltip class="item tip-logout" effect="dark" content="退出" placement="bottom" style="padding:0px;">
+                <el-tooltip class="item tip-logout" effect="dark" content="Logout" placement="bottom" style="padding:0px;">
                     <i class="fa fa-sign-out" aria-hidden="true" v-on:click="logout"></i>
                 </el-tooltip>
             </el-col>
         </el-col>
         <el-col :span="24" class="panel-center">
             <el-col :span="4">
-                <aside style="width:230px;">
-                    <h5 class="admin"><i class="fa fa-user" aria-hidden="true" style="margin-right:5px;"></i>欢迎系统管理员：测试</h5>
-                    <el-menu style="border-top: 1px solid #475669;" default-active="/table" class="el-menu-vertical-demo" @open="handleopen"
-                        @close="handleclose" @select="handleselect" theme="dark" unique-opened router>
-                        <el-submenu index="1">
-                            <template slot="title"><i class="el-icon-message"></i>导航一</template>
-                            <el-menu-item index="/admin/vods">Table</el-menu-item>
-                            <el-menu-item index="/admin/tags">Form</el-menu-item>
-                            <el-menu-item index="/admin/page3">页面3</el-menu-item>
-                        </el-submenu>
-                        <el-submenu index="2">
-                            <template slot="title"><i class="fa fa-id-card-o"></i>导航二</template>
-                            <el-menu-item index="/page4">选项4</el-menu-item>
-                            <el-menu-item index="/page5">选项5</el-menu-item>
-                        </el-submenu>
-                        <el-menu-item index="/page6"><i class="fa fa-line-chart"></i>导航三</el-menu-item>
-                    </el-menu>
-                    <el-menu :default-active="currentPath" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect"
-                        theme="dark" unique-opened router>
-                        <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-                            <el-submenu :index="index+''" v-if="!item.leaf">
-                                <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-                                <el-menu-item v-for="child in item.children" :index="child.path">{{child.name}}</el-menu-item>
-                            </el-submenu>
-                            <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
-                        </template>
+                <aside>
+                    <el-menu :default-active="currentPath"  theme="dark" router>
+						<el-menu-item index="/">Home</el-menu-item>
+						<el-menu-item index="/admin/vods">Vods</el-menu-item>
+						<el-menu-item index="/admin/tags">Tags</el-menu-item>
                     </el-menu>
                 </aside>
             </el-col>
@@ -61,73 +40,37 @@
 </template>
 
 <script>
+import g from 'genesis-object'
+import ctrl from './controllers/Controller'
+import User from './models/User'
 
   export default {
     name: 'app',
     data() {
-			return {
-				currentPath: '/table',
-				currentPathName: 'Table',
-				currentPathNameParent: '导航一',
-				sysUserName: '',
-				sysUserAvatar: '',
-				form: {
-					name: '',
-					region: '',
-					date1: '',
-					date2: '',
-					delivery: false,
-					type: [],
-					resource: '',
-					desc: ''
+			return g("", function(){
+				var self = {
+					model:"tag",
+					user: User,
+					currentPath:"/admin/vods",
+					logout:function(){
+						this.$confirm('yes', 'no', {
+							//type: 'warning'
+						}).then(() => {
+							self.user = User.create();
+							//redirect login
+						}).catch(() => {
+
+						});
+					}
 				}
-			}
-		},
-		watch: {
-			'$route'(to, from) {//监听路由改变
-				this.currentPath = to.path;
-				this.currentPathName = to.name;
-				this.currentPathNameParent = to.matched[0].name;
-			}
+				return self
+			}, [ctrl]).create()
 		},
 		methods: {
-			onSubmit() {
-				console.log('submit!');
-			},
-			handleopen() {
-				//console.log('handleopen');
-			},
-			handleclose() {
-				//console.log('handleclose');
-			},
-			handleselect: function (a, b) {
-			},
-			//退出登录
-			logout: function () {
-				var _this = this;
-				this.$confirm('确认退出吗?', '提示', {
-					//type: 'warning'
-				}).then(() => {
-					sessionStorage.removeItem('user');
-					_this.$router.replace('/login');
-				}).catch(() => {
-
-				});
-
-
-			}
 		},
 		mounted() {
-			this.currentPath = this.$route.path;
-			this.currentPathName = this.$route.name;
-			this.currentPathNameParent = this.$route.matched[0].name;
-
-			var user = sessionStorage.getItem('user');
-			if (user) {
-				user = JSON.parse(user);
-				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '';
-			}
+			this.currentPath = this.$route.path; 
+			this.user.username = "swaggy";
 		}
   }
 </script>
