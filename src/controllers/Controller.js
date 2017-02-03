@@ -3,7 +3,7 @@ import api from '../Api'
 
 import c from '../config'
 
-export default g("Controller", function(){
+export default g(function(){
     var self = {
         urls:{},
         model:"domain",

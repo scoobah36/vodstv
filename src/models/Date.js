@@ -1,6 +1,6 @@
 import g from 'genesis-object'
 
-export default g("Date", function(){
+export default g(function(){
     var self = {
         day:0,
         month:0,

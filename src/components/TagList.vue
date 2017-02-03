@@ -52,7 +52,7 @@ export default {
       }
     },
   data () {
-    return g("", function(){
+    return g(function(){
         var self = {
           model:"tag",
           query: '',

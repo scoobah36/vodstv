@@ -47,7 +47,7 @@ import User from './models/User'
   export default {
     name: 'app',
     data() {
-			return g("", function(){
+			return g(function(){
 				var self = {
 					model:"tag",
 					user: User,

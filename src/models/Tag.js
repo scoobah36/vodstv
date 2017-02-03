@@ -1,7 +1,7 @@
 import g from 'genesis-object'
 import gDate from './Date'
 
-export default g("Tag", function(){
+export default g(function(){
     var self = {
         id:"",
         createdAt: gDate,

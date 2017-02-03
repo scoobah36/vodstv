@@ -1,6 +1,6 @@
 import g from 'genesis-object'
 
-export default g("User", function(){
+export default g(function(){
     var self = {
         id:"",
         username:"",

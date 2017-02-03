@@ -32,7 +32,7 @@
             <el-table-column prop="videoKey" label="videoKey" width="150"></el-table-column>
             <el-table-column prop="videoSrc" label="videoSrc" width="150"></el-table-column>
             <el-table-column prop="videoURL" label="videoURL" width="150"></el-table-column>
-            <el-table-column fixed="right" label="Actions" width="150">
+            <el-table-column fixed="right" width="80">
                 <template scope="scope">
                     <el-button type="success" size="small" @click="handleClick"><span class="fa fa-save"></span></el-button>
                     <el-button type="danger" size="small"><span class="fa fa-trash"></span></el-button>
@@ -56,7 +56,7 @@ export default {
       }
     },
     data () {
-        return g("", function(){
+        return g(function(){
             var self = {
                 model:"vod",
                 query: '',
