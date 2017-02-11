@@ -1,0 +1,34 @@
+.vods{
+    .vod-card {
+        .el-card {
+            border: 0px; 
+            border-radius: 0px; 
+            background-color: none; 
+            box-shadow: none;
+        }
+        .el-card__header{
+            border-bottom: none; 
+            padding: 0px;
+        }
+        .vod-header {
+            display: flex;
+            padding: 10px;
+            .actions{
+                a { color: inherit; text-decoration: inherit; } 
+                i {
+                    line-height: 1;
+                    cursor: pointer;
+                    margin: 5px;
+                    font-size: 14px;
+                }
+                i:hover {
+                    color: #20a0ff;
+                }
+            }
+        }
+
+        .vod-body {
+            padding: 10px;
+        }
+    }
+}

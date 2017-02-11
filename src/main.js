@@ -14,7 +14,9 @@ import App from './App'
 import Hello from './components/Hello'
 import VodList from './components/VodList'
 import TagList from './components/TagList'
+
 import Admin from './controllers/Admin'
+import Feed from './controllers/Feed'
 
 // Create the router instance and pass the `routes` option
 const router = new VueRouter({
@@ -22,6 +24,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Hello },
+    { path: '/feed', component: Feed },
     { 
       path: '/admin', 
       component: Admin,

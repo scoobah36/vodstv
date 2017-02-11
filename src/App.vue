@@ -1,7 +1,10 @@
 <template>
     <el-row class="panel">
         <el-col :span="24" class="panel-top">
-            <el-col :span="20" style="font-size:26px;">
+            <el-col :span="1">
+                <i v-on:click="toggleNav" class="icon-btn fa fa-bars"></i>
+            </el-col>
+            <el-col :span="19" style="font-size:26px;">
                 <img src="./assets/logo4.png" class="logo"> <span>Vods<i style="color:#20a0ff">TV</i></span>
             </el-col>
             <el-col :span="4" class="rightbar">
@@ -19,24 +22,26 @@
             </el-col>
         </el-col>
         <el-col :span="24" class="panel-center">
-            <el-col :span="4">
-                <aside>
+            <el-col :span="2" :class="{'sidebar-close': !showNav}">
+                <aside >
                     <el-menu :default-active="currentPath"  theme="dark" router>
-						<el-menu-item index="/">Home</el-menu-item>
+						<el-menu-item index="/"><i class="fa fa-home"></i>Home</el-menu-item>
+						<el-menu-item index="/feed">Feed</el-menu-item>
 						<el-menu-item index="/admin/vods">Vods</el-menu-item>
 						<el-menu-item index="/admin/tags">Tags</el-menu-item>
                     </el-menu>
                 </aside>
             </el-col>
-            <el-col :span="20" class="panel-c-c">
+            <el-col :span="showNav ? 22 : 24" class="panel-c-c">
                 <el-col :span="24">
                     <!--<transition name="fade">-->
-                    <router-view></router-view>
+                    	<router-view></router-view>
                     <!--</transition>-->
                 </el-col>
             </el-col>
         </el-col>
     </el-row>
+
 </template>
 
 <script>
@@ -44,47 +49,61 @@ import g from 'genesis-object'
 import ctrl from './controllers/Controller'
 import User from './models/User'
 
-  export default {
-    name: 'app',
-    data() {
-			return g(function(){
-				var self = {
-					model:"tag",
-					user: User,
-					currentPath:"/admin/vods",
-					logout:function(){
-						this.$confirm('yes', 'no', {
-							//type: 'warning'
-						}).then(() => {
-							self.user = User.create();
-							//redirect login
-						}).catch(() => {
+export default {
+	name: 'app',
+	data() {
+		return g(function(){
+			var self = {
+				model:"tag",
+				user: User,
+				currentPath:"/admin/vods",
+				showNav:true
+			}
+			return self
+		}, [ctrl]).create()
+	},
+	methods: {
+		toggleNav:function(){
+			this.showNav = !this.showNav;
+		},
+		logout:function(){
+			this.$confirm('yes', 'no', {
+				//type: 'warning'
+			}).then(() => {
+				self.user = User.create();
+				//redirect login
+			}).catch(() => {
 
-						});
-					}
-				}
-				return self
-			}, [ctrl]).create()
-		},
-		methods: {
-		},
-		mounted() {
-			this.currentPath = this.$route.path; 
-			this.user.username = "swaggy";
+			});
 		}
-  }
+	},
+	mounted() {
+		this.currentPath = this.$route.path; 
+		this.user.username = "swaggy";
+	}
+}
 </script>
 
 <style>
 body{
   margin: 0px;
 }
+.sidebar-close{
+	display: none
+}
+.icon-btn{
+	line-height: 1;
+    cursor: pointer;
+    text-align: center;
+    margin: 10px 15px;
+    font-size: 14px;
+} 
+.icon-btn:hover {
+    color: #20a0ff;
+}
 #app {
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;*/
+ 
+ 
 }
 .fade-enter-active,
 	.fade-leave-active {

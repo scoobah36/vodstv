@@ -21,6 +21,7 @@
             :data="vods"
             border
             max-height="600"
+            empty-text="No Data"
             style="width: 100%; max-height: 100%">
             
             <el-table-column prop="id" label="id" width="50"></el-table-column>
@@ -58,7 +59,7 @@ export default {
     data () {
         return g(function(){
             var self = {
-                model:"vod",
+                model:"vod", 
                 query: '',
                 vods:[Vod]
             }
@@ -68,9 +69,7 @@ export default {
     mounted() {
         var self = this;
         self.list().then(function(response){
-            response.data.forEach(function(vod){
-                self.vods.pushCreate(vod);
-            })
+            self.vods.pushCreate(response.data);
         })
     }
 }
