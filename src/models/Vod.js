@@ -1,4 +1,5 @@
 import g from 'genesis-object'
+import gDate from './Date'
 
 export default g(function(){
     var self = {
@@ -7,6 +8,7 @@ export default g(function(){
         tags:"",
         thumbURL:"",
         title:"",
+        date: gDate,
         videoDate:"",
         videoKey:"",
         videoSrc:"",

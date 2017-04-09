@@ -20,7 +20,7 @@
             </div>
             <div class="content">
                 <div class="title"><a>{{vod.title}}</a></div>
-                <div class="subtext">{{vod.videoKey}}</div>
+                <div class="subtext">{{vod.date.format()}}</div>
                 <div class="desc">
                     <p>{{vod.description}}</p>
                 </div>
