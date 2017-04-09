@@ -1,0 +1,23 @@
+.nav-pills .nav-link {
+  border-radius: 0rem;
+}
+
+.nav-pills .nav-link {
+  cursor: pointer;
+}
+.nav-pills .nav-link.disabled {
+  cursor: not-allowed;
+    background-color: transparent;
+}
+.nav-pills .nav-link.active,
+.nav-pills .nav-item.show .nav-link {
+  color: #fff;
+  cursor: pointer;
+    background-color: #d35400;
+}
+.nav > li > a.active:hover,
+.nav > li > a.active:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #292929;
+}
