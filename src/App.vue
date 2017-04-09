@@ -1,28 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'app'
-}
-</script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
-<template>
-  <div id="app">
     <b-navbar toggleable
               type="default">
   
@@ -50,7 +27,7 @@ export default {
       </b-nav>
     </b-navbar>
     <div class="sidebar page-section">
-      <img src="./assets/logo.png">
+    
     </div>
     <div class="main page-section">
       <router-view></router-view>
@@ -69,8 +46,11 @@ export default {
 
 <style lang="less" scoped>
 @import './assets/variables.less';
+#app {
+  min-width: @page-w;
+}
+
 @nav-h: 50px;
-@side-width: 250px;
 @main-marg: 10px;
 @full-h: ~"calc(100vh - @{nav-h})";
 
@@ -98,20 +78,21 @@ export default {
 
 .sidebar {
   background-color: @gray-dark;
-  width: @side-width;
+  width: @side-w;
   height: @full-h;
 }
 
 .main {
   margin: 0px @main-marg;
-  width:~"calc( 100vw - ( (@{main-marg} * 2) + (@{side-width} * 2)))";
+  min-width: @main-w;
+  width:~"calc( 100vw - ( (@{main-marg} * 2) + (@{side-w} * 2)))";
   height: @full-h;
   overflow: auto;
 }
 
 .rightside {
   background-color: @gray-dark;
-  width: @side-width;
+  width: @side-w;
   height: 100%;
   height: @full-h;
 }

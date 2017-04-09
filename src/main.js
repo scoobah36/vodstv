@@ -10,8 +10,8 @@ Vue.use(BootstrapVue);
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './assets/theme.css'
-import './assets/bs4.css'
+import './assets/css/theme.css'
+import './assets/css/bs4.css'
 
 Vue.config.productionTip = false
 
