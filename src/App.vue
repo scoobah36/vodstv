@@ -8,6 +8,10 @@
         <span class="logo-decoration">Vods</span>.TV
       </b-link>
   
+      <b-nav is-nav-bar>
+        <b-nav-item to="/feed">Feed</b-nav-item>
+      </b-nav>
+  
       <b-nav is-nav-bar
              class="ml-auto">
   
@@ -20,14 +24,21 @@
             <span>Swiggity Swagger</span>
           </template>
   
-          <b-list-group-item to="#/profile">Profile</b-list-group-item>
+          <b-list-group-item to="/profile">Profile</b-list-group-item>
           <b-list-group-item to="#">Signout</b-list-group-item>
         </b-nav-item-dropdown>
+      </b-nav>
+  
+      <b-nav is-nav-bar
+             class="ml-auto">
+        <b-nav is-nav-bar
+               left-alignment>
+        </b-nav>
   
       </b-nav>
     </b-navbar>
     <div class="sidebar page-section">
-    
+  
     </div>
     <div class="main page-section">
       <router-view></router-view>
