@@ -15,9 +15,9 @@
   cursor: pointer;
     background-color: #d35400;
 }
-.nav > li > a.active:hover,
-.nav > li > a.active:focus {
-  color: #fff;
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #fff !important;
   text-decoration: none;
   background-color: #292929;
 }

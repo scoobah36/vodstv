@@ -1,23 +1,28 @@
 <template>
     <div class="feed">
+        <h2>{{title}}</h2>
         <div class="item"
-             v-for="n in 100">
+             v-for="vod in vods">
             <div class="thumb">
-                <img src="static/img/placeholder.png">
+                <img :src="vod.thumbURL">
             </div>
             <div class="tools">
                 <b-nav pills>
-                    <b-nav-item>Active</b-nav-item>
-                    <b-nav-item>Link</b-nav-item>
-                    <b-nav-item>Another Link</b-nav-item>
-                    <b-nav-item disabled>Disabled</b-nav-item>
+                    <b-nav-item>
+                        <icon name="check"
+                              label="Mark Watched"></icon>
+                    </b-nav-item>
+                    <b-nav-item>
+                        <icon name="save"
+                              label="Save For Later"></icon>
+                    </b-nav-item>
                 </b-nav>
             </div>
             <div class="content">
-                <div class="title">This is a title</div>
-                <div class="subtext">by this one guy</div>
+                <div class="title"><a>{{vod.title}}</a></div>
+                <div class="subtext">{{vod.videoKey}}</div>
                 <div class="desc">
-                    <p>Call me Ishmael. Some years ago &ndash; never mind how long precisely &ndash; having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen, and regulating the circulation. Whenever I find myself growing grim about the mouth; whenever it is a damp, drizzly November in my soul; whenever I find myself involuntarily pausing before coffin warehouses, and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. and bringing up the rear of every funeral I meet; and especially whenever my hypos get such an upper hand of me, that it requires a strong moral principle to prevent me from deliberately stepping into the street, and methodically knocking people's hats off &ndash; then, I account it high time to get to sea as soon as I can. <i></i></p>
+                    <p>{{vod.description}}</p>
                 </div>
             </div>
         </div>
@@ -25,12 +30,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
     name: 'feed',
+    computed: mapState([
+        'vods'
+    ]),
     data() {
         return {
-            msg: 'Welcome to Your Feed'
+            title: 'Welcome to Your Feed'
         }
+    },
+    mounted: function () {
+        this.$store.dispatch('LOAD_VOD_LIST')
     }
 }
 </script>
@@ -55,6 +68,15 @@ export default {
     margin: 5px 0px;
     position: relative;
 
+    &:hover,
+    &:focus {
+        .content .title {
+            color: #fff;
+        }
+        cursor: pointer;
+        background-color: #292929;
+    }
+
     .tools {
         display: none;
         position: absolute;
@@ -68,9 +90,13 @@ export default {
     }
     .thumb {
         float: left;
+        padding: 25px 10px;
         height: 100%;
         width: @item-height + 20;
-        padding: 25px 10px
+
+        img {
+            width: @item-height;
+        }
     }
     .content {
         float: left;

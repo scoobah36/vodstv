@@ -1,5 +1,5 @@
 import g from 'genesis-object'
-import api from '../Api'
+import api from '../api'
 
 import c from '../config'
 
