@@ -8,17 +8,23 @@
                 <img src="./assets/logo4.png" class="logo"> <span>Vods<i style="color:#20a0ff">TV</i></span>
             </el-col>
             <el-col :span="4" class="rightbar">
-                <el-dropdown trigger="click">
-                    <span class="el-dropdown-link" style="color:#c0ccda;cursor: pointer;"><i class="fa fa-user" aria-hidden="true" style="margin-right:5px;"></i> {{user.username}}</span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>this</el-dropdown-item>
-                        <el-dropdown-item>that</el-dropdown-item>
-                        <el-dropdown-item divided @click.native="logout">Logout</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-                <el-tooltip class="item tip-logout" effect="dark" content="Logout" placement="bottom" style="padding:0px;">
-                    <i class="fa fa-sign-out" aria-hidden="true" v-on:click="logout"></i>
-                </el-tooltip>
+                <!--<el-menu mode="horizontal">
+                    <el-submenu>
+                        <template slot="title">{{user.username}} User</template>
+                        <el-menu-item>item one</el-menu-item>
+                        <el-menu-item index="/login">Login</el-menu-item>
+                        <el-menu-item @click.native="logout">Logout</el-menu-item>
+                    </el-submenu>
+                </el-menu>-->
+                <el-menu mode="horizontal" router unique-opened>
+					<el-submenu index="1">
+						<template slot="title"><i class="fa fa-user"></i>{{user.username}}</template>
+						<el-menu-item index="/login">Login</el-menu-item>
+						<el-menu-item index="/form">Form</el-menu-item>
+						<el-menu-item index="/page3">页面3</el-menu-item>
+					</el-submenu>
+				</el-menu>
+                
             </el-col>
         </el-col>
         <el-col :span="24" class="panel-center">
@@ -79,7 +85,7 @@ export default {
 	},
 	mounted() {
 		this.currentPath = this.$route.path; 
-		this.user.username = "swaggy";
+        //go get me
 	}
 }
 </script>

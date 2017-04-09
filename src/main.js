@@ -12,6 +12,7 @@ Vue.use(Element)
 // import components
 import App from './App'
 import Hello from './components/Hello'
+import Login from './components/Login'
 import VodList from './components/VodList'
 import TagList from './components/TagList'
 
@@ -24,6 +25,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/', component: Hello },
+    { path: '/login', component: Login },
     { path: '/feed', component: Feed },
     { 
       path: '/admin', 
