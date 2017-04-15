@@ -7,7 +7,7 @@ import Vod from '../models/Vod'
 Vue.use(Vuex)
 var api = axios.create({
     url: '',
-    baseURL: process.env.API_URL,
+    baseURL: process.env.API_URL || 'noApiUrl',
     timeout: 9000
 });
 
