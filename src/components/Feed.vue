@@ -43,7 +43,7 @@ export default {
         }
     },
     mounted: function () {
-        this.$store.dispatch('LOAD_VOD_LIST')
+        this.$store.dispatch('LOAD_VOD_LIST', {})
     }
 }
 </script>
@@ -70,7 +70,7 @@ export default {
 
     &:hover,
     &:focus {
-        .content .title {
+        .content {
             color: #fff;
         }
         cursor: pointer;
@@ -80,7 +80,16 @@ export default {
     .tools {
         display: none;
         position: absolute;
-        right: 0;
+        background-color: rgba(204, 204, 204, 0.7);
+        left: 0;
+        width: @item-height;
+        margin-left: 10px;
+
+        .nav>li>a {
+            padding: 10px;
+            color: @gray;
+            opacity: 1;
+        }
     }
 
     &:hover {
@@ -106,7 +115,6 @@ export default {
         .title {
             font-size: x-large;
             padding-top: 5px;
-            height: @title-h;
         }
         .subtext {
             font-size: small;
