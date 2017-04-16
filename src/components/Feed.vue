@@ -85,6 +85,8 @@ export default {
     min-width: @main-w;
     margin-left: auto;
     margin-right: auto;
+    background-color: @gray-dark;
+    padding: 20px;
 
     .header {
         position: relative;
