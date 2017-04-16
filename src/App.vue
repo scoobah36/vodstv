@@ -1,41 +1,39 @@
 <template>
   <div id="app">
+  
     <b-navbar toggleable
               type="default">
   
+      <b-nav-toggle target="nav_collapse"></b-nav-toggle>
+  
       <b-link class="navbar-brand"
               to="/">
+        <span class="logo"><img class="logo" src="static/img/vodstvLogo.png"/> </span>
         <span class="logo-decoration">Vods</span>.TV
       </b-link>
   
-      <b-nav is-nav-bar>
-        <b-nav-item to="/feed">Feed</b-nav-item>
-      </b-nav>
+      <b-collapse is-nav
+                  id="nav_collapse">
   
-      <b-nav is-nav-bar
-             class="ml-auto">
-  
-        <!-- Navbar dropdowns -->
-        <b-nav-item-dropdown :caret="false"
-                             right-alignment>
-  
-          <!-- Using text slot -->
-          <template slot="text">
-            <span>Swiggity Swagger</span>
-          </template>
-  
-          <b-list-group-item to="/profile">Profile</b-list-group-item>
-          <b-list-group-item to="#">Signout</b-list-group-item>
-        </b-nav-item-dropdown>
-      </b-nav>
-  
-      <b-nav is-nav-bar
-             class="ml-auto">
-        <b-nav is-nav-bar
-               left-alignment>
+        <b-nav is-nav-bar>
+          <b-nav-item to="/feed">Feed</b-nav-item>
         </b-nav>
   
-      </b-nav>
+        <b-nav is-nav-bar
+               class="ml-auto">
+  
+          <b-nav-item-dropdown right-alignment>
+  
+            <template slot="text">
+              <span>Swiggity Swagger</span>
+            </template>
+  
+            <b-list-group-item to="/profile">Profile</b-list-group-item>
+            <b-dropdown-item to="#">Signout</b-dropdown-item>
+          </b-nav-item-dropdown>
+  
+        </b-nav>
+      </b-collapse>
     </b-navbar>
     <div class="sidebar page-section">
   
@@ -75,6 +73,10 @@ export default {
     color: @brand-primary;
     font-size: x-large;
   }
+  .logo {
+    width: 30px;
+    margin-top: -8px;
+  }
 
   .dropdown-menu {
     padding: 0px;
@@ -94,9 +96,9 @@ export default {
 }
 
 .main {
-  margin: 0px @main-marg;
+  margin: 0px;
   min-width: @main-w;
-  width:~"calc( 100vw - ( (@{main-marg} * 2) + (@{side-w} * 2)))";
+  width:~"calc( 100vw - (@{side-w} * 2) )";
   height: @full-h;
   overflow: auto;
 }

@@ -12,7 +12,10 @@ export default g(function(){
         videoDate:"",
         videoKey:"",
         videoSrc:"",
-        videoURL:""
+        videoURL:"",
+        yt: function(){
+            return "https://www.youtube.com/watch?v=" + self.videoKey
+        }
     }
     return self
 })
